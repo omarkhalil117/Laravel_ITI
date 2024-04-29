@@ -23,6 +23,7 @@
                         <td>{{ $post['id'] }}</td>
                         <td>{{ $post['title'] }}</td>
                         <td>{{ $post['body'] }}</td>
+                        <td>{{ $post['creator'] }}</td>
                         <td>
                             <a href="{{route('posts.show',$post['id'] )}}" class="btn btn-sm btn-primary">View</a>
                             <a href="{{route('posts.edit',$post['id'] )}}" class="btn btn-sm btn-primary">Edit</a>

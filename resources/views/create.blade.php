@@ -9,7 +9,8 @@
                     <h1>Create a New Post</h1>
                 </div>
                 <div class="card-body">
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{route("posts.store")}}" method="post" enctype="multipart/form-data">
+                        @csrf
                         <div class="mb-3">
                             <label for="title" class="form-label">Title</label>
                             <input type="text" class="form-control" id="title" name="title" required>
@@ -19,8 +20,12 @@
                             <textarea class="form-control" id="body" name="body" rows="5" required></textarea>
                         </div>
                         <div class="mb-3">
+                            <label for="creator" class="form-label">Creator</label>
+                            <input type="text" class="form-control" id="creator" name="creator">
+                        </div>
+                        <div class="mb-3">
                             <label for="image" class="form-label">Image</label>
-                            <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+                            <input type="file" class="form-control" id="image" name="image" accept="image/*">
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>

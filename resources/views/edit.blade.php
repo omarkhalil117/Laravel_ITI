@@ -9,7 +9,7 @@
                     <h1>Edit Post</h1>
                 </div>
                 <div class="card-body">
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('posts.update', $post->id)}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="mb-3">
@@ -19,6 +19,10 @@
                         <div class="mb-3">
                             <label for="body" class="form-label">Body</label>
                             <textarea class="form-control" id="body" name="body" rows="5" required>{{ $post['body'] }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="creator" class="form-label">Creator</label>
+                            <input type="text" class="form-control" id="creator" name="creator" value="{{ $post['creator'] }}" required>
                         </div>
                         <div class="mb-3">
                             <label for="image" class="form-label">Image</label>

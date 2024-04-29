@@ -3,52 +3,64 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
 
 class PostController extends Controller
 {
-    private $posts = [
-        ['id' => 1, 'title' => 'Title 1', 'body' => 'First Post :D', 'image' => 'pic1.png'],
-        ['id' => 2, 'title' => 'Title 2', 'body' => 'Anything ', 'image' => 'pic2.png'],
-        ['id' => 3, 'title' => 'Title 3', 'body' => 'Test Posts', 'image' => 'pic3.png'],
-        ['id' => 4, 'title' => 'Title 4', 'body' => 'Hello World', 'image' => 'pic4.png'],
-
-    ];
 
     function create()
     {
         return view("create");
     }
+    function store()
+    {
+        $req = request()->all();
+        $new_post = new Post();
+
+        $new_post->title = $req['title'] ;
+        $new_post->body = $req['body'];
+        $new_post->creator = $req['creator'];
+
+        $new_post->save();
+
+        return to_route('posts.index');
+    }
     function index()
     {
-        return view("index", ["posts" => $this->posts]);
+        $posts = Post::all();
+        return view("index", ["posts" => $posts]);
     }
     function show($id)
     {
-        if ($id <= count($this->posts)) {
-            $post = $this->posts[$id - 1];
-            return view('show', ["post" => $post]);
-        }
-        return abort(404);
+        $post = Post::findOrFail($id);
+        return view('show', ["post" => $post]);
+        
     }
     function edit($id)
     {
-        if ($id <= count($this->posts)) {
-            $post = $this->posts[$id - 1];
-            return view('edit', ["post" => $post]);
-        }
-        return abort(404);
+        $post = Post::findOrFail($id);
+        return view('edit', ["post" => $post]);
     }
+
+    function update($id) 
+    {
+        $post = Post::findOrFail($id);
+        $update_data = request()->all();
+
+        $post->title = $update_data['title']; 
+        $post->body = $update_data['body'];
+        $post->creator = $update_data['creator'];
+
+        $post->save();
+        return to_route("posts.index");
+    }
+
     public function destroy($id)
     {
-        $postIndex = $id - 1;
-
-        if ($postIndex < count($this->posts)) {
-            unset($this->posts[$postIndex]);
-
-            $this->posts = array_values($this->posts);
-            return view('index', ["posts" => $this->posts]);
-        }
-
-        return abort(404);
+        
+        $post = Post::findOrFail($id);
+        $post->delete();
+        
+        return to_route("posts.index");
     }
 }

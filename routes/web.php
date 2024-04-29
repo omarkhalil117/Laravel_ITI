@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\student;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,6 +34,8 @@ Route::get('/users/{id}' , function($id) {
 })->where('id','[0-9]+');
 
 Route::get('/students',[student::class,'home']);
+
+Route::get('/users',[UserController::class,'index'])->name('users.index');
 
 Route::post('/posts/create', [PostController::class, 'store'])->name('posts.store');
 

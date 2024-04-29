@@ -10,8 +10,6 @@ class PostController extends Controller
         ['id' => 1, 'title' => 'Title 1', 'body' => 'First Post :D', 'image' => 'pic1.png'],
         ['id' => 2, 'title' => 'Title 2', 'body' => 'Anything ', 'image' => 'pic2.png'],
         ['id' => 3, 'title' => 'Title 3', 'body' => 'Test Posts', 'image' => 'pic3.png'],
-        ['id' => 4, 'title' => 'Title 4', 'body' => 'Hello World', 'image' => 'pic4.png'],
-
     ];
 
     function create()

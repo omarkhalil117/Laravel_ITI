@@ -10,8 +10,6 @@
                 </div>
                 <div class="card-body">
                     <form action="" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        @method('PUT')
                         <div class="mb-3">
                             <label for="title" class="form-label">Title</label>
                             <input type="text" class="form-control" id="title" name="title" value="{{ $post['title'] }}" required>

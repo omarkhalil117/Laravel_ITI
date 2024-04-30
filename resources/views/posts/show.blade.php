@@ -1,5 +1,6 @@
 @extends('layouts.default')
 
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -10,6 +11,8 @@
                     <h5 class="card-title">{{ $post['title'] }}</h5>
                     <p class="card-text">{{ $post['body'] }}</p>
                     <p class="card-text">{{ $post->user->name }}</p>
+
+                    <p>Created {{$post->getCreatedAt()}}</p>
                 </div>
             </div>
         </div>

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('body');
             $table->string('image')->nullable();
+            $table->foreignId('creator_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

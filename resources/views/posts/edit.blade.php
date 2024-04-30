@@ -20,10 +20,12 @@
                             <label for="body" class="form-label">Body</label>
                             <textarea class="form-control" id="body" name="body" rows="5" required>{{ $post['body'] }}</textarea>
                         </div>
-                        <div class="mb-3">
-                            <label for="creator" class="form-label">Creator</label>
-                            <input type="text" class="form-control" id="creator" name="creator" value="{{ $post['creator'] }}" required>
-                        </div>
+                        <select class="form-select" aria-label="Default select example" name="creator_id">
+                            <option selected disabled value=""> Choose User</option>
+                            @foreach($users as $user)
+                                <option value="{{$user->id}}">{{$user->name}}</option>
+                            @endforeach
+                        </select>
                         <div class="mb-3">
                             <label for="image" class="form-label">Image</label>
                             <input type="file" class="form-control" id="image" name="image" accept="image/*">

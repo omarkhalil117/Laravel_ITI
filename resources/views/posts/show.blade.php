@@ -9,6 +9,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $post['title'] }}</h5>
                     <p class="card-text">{{ $post['body'] }}</p>
+                    <p class="card-text">{{ $post->user->name }}</p>
                 </div>
             </div>
         </div>

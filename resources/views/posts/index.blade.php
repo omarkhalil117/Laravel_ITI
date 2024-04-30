@@ -14,20 +14,21 @@
                         <th>ID</th>
                         <th>Title</th>
                         <th>Body</th>
+                        <th>Creator</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($posts as $post)
                     <tr>
-                        <td>{{ $post['id'] }}</td>
-                        <td>{{ $post['title'] }}</td>
-                        <td>{{ $post['body'] }}</td>
-                        <td>{{ $post['creator'] }}</td>
+                        <td>{{ $post->id }}</td>
+                        <td>{{ $post->title }}</td>
+                        <td>{{ $post->body }}</td>
+                        <td>{{ $post->user->name }}</td>
                         <td>
-                            <a href="{{route('posts.show',$post['id'] )}}" class="btn btn-sm btn-primary">View</a>
-                            <a href="{{route('posts.edit',$post['id'] )}}" class="btn btn-sm btn-primary">Edit</a>
-                            <form action="{{ route('posts.destroy', $post['id']) }}" method="POST" style="display: inline;">
+                            <a href="{{route('posts.show',$post->id )}}" class="btn btn-sm btn-primary">View</a>
+                            <a href="{{route('posts.edit',$post->id )}}" class="btn btn-sm btn-primary">Edit</a>
+                            <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this post?')">Delete</button>

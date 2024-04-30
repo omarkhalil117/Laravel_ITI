@@ -17,7 +17,12 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => $this->faker->sentence,
+            'body' => $this->faker->paragraph,
+            'image' => 'default_image.jpg',
+            'creator_id' => $this->faker->numberBetween(1,10),
+            'created_at' => $this->faker->dateTime,
+            'updated_at' => $this->faker->dateTime,
         ];
     }
 }

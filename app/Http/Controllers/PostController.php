@@ -9,6 +9,14 @@ use App\Models\User;
 
 class PostController extends Controller
 {
+        private function file_operations($request){
+            if($request->hasFile('image')){
+                $image = $request->file('image');
+                $filepath=$image->store("images", "posts_uploads");
+                return $filepath;
+            }
+            return null;
+        }
 
     /**
      * Display a listing of the resource.
@@ -33,11 +41,13 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
+        $file_path = $this->file_operations($request);
         $req = request()->all();
         $new_post = new Post();
         
-        $new_post->title = str_slug($request['title'],'-');
+        $new_post->title = str_slug($req['title'],'-');
         $new_post->body = $req['body'];
+        $new_post->image = $file_path;
         $new_post->creator_id = $req['creator_id'];
 
         $new_post->save();

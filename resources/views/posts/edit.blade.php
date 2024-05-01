@@ -14,14 +14,20 @@
                         @method('PUT')
                         <div class="mb-3">
                             <label for="title" class="form-label">Title</label>
-                            <input type="text" class="form-control" id="title" name="title" value="{{ $post['title'] }}" required>
+                            <input type="text" class="form-control" id="title" name="title" value="{{ $post->title }}" >
+                            @error('title')
+                                <div class="alert alert-danger ">{{ $message }}</div> 
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="body" class="form-label">Body</label>
-                            <textarea class="form-control" id="body" name="body" rows="5" required>{{ $post['body'] }}</textarea>
+                            <textarea class="form-control" id="body" name="body" rows="5" required>{{ $post->body }}</textarea>
                         </div>
-                        <select class="form-select" aria-label="Default select example" name="creator_id">
-                            <option selected disabled value=""> Choose User</option>
+                            @error('body')
+                                <div class="alert alert-danger ">{{ $message }}</div> 
+                            @enderror
+                        <select class="form-select" aria-label="Default select example" name="creator_id" value="{{$post->user->id}}">
+                            <option selected disabled value="{{$post->user->id}}">{{$post->user->name}}</option>
                             @foreach($users as $user)
                                 <option value="{{$user->id}}">{{$user->name}}</option>
                             @endforeach

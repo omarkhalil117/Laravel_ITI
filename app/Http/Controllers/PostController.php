@@ -35,7 +35,7 @@ class PostController extends Controller
     {
         $req = request()->all();
         $new_post = new Post();
-
+        
         $new_post->title = $req['title'] ;
         $new_post->body = $req['body'];
         $new_post->creator_id = $req['creator_id'];
@@ -70,6 +70,7 @@ class PostController extends Controller
         $update_data = $request->all();
         $post->title = $update_data['title']; 
         $post->body = $update_data['body'];
+
         $post->creator_id = $update_data['creator_id'];
 
         $post->save();

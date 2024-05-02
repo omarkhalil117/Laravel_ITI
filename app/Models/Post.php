@@ -13,6 +13,7 @@ class Post extends Model
     use HasFactory;
     use SoftDeletes;
 
+
     public function comments()
     {
         return $this->morphMany(Comment::class, 'commentable');
@@ -28,11 +29,6 @@ class Post extends Model
         return Carbon::parse($this->created_at)->diffForHumans();
     }
 
-    public function restore()
-    {
-        $restoredCount = Post::onlyTrashed()->restore();
-
-        return redirect()->back()->with('success', $restoredCount . ' soft deleted posts restored successfully');
-    }
+    
 
 }

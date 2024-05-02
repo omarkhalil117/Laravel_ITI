@@ -77,6 +77,7 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
+        $this->authorize('update', $post);
         $update_data = $request->all();
         $post->title = str_slug($update_data['title'],'-'); 
         $post->body = $update_data['body'];
@@ -92,6 +93,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $this->authorize('update', $post);
         $post->delete();
         return to_route("posts.index");
     }

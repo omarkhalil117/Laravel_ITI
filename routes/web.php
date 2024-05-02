@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\student;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CommentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,3 +53,5 @@ Route::get('/users',[UserController::class,'index'])->name('users.index');
 // Route::put('/posts/{id}', [PostController::class,'update'])->name('posts.update');
 
 Route::resource('posts', PostController::class);
+
+Route::post('/comments', [CommentController::class, 'store'])->name('comment.store');

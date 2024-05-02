@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Post extends Model
 {
     use HasFactory;
-    // use SoftDeletes;
+    use SoftDeletes;
 
     public function comments()
     {
@@ -27,4 +27,12 @@ class Post extends Model
     {
         return Carbon::parse($this->created_at)->diffForHumans();
     }
+
+    public function restore()
+    {
+        $restoredCount = Post::onlyTrashed()->restore();
+
+        return redirect()->back()->with('success', $restoredCount . ' soft deleted posts restored successfully');
+    }
+
 }

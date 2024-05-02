@@ -95,4 +95,11 @@ class PostController extends Controller
         $post->delete();
         return to_route("posts.index");
     }
+
+    public function restore()
+    {
+        $restoredCount = Post::onlyTrashed()->restore();
+
+        return redirect()->back()->with('success', $restoredCount . ' soft deleted posts restored successfully');
+    }
 }

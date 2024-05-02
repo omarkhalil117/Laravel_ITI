@@ -9,6 +9,11 @@
             <h1>All Posts</h1>
             <div class="mb-3">
                 <a href="{{ route('posts.create') }}" class="btn btn-primary">Add Post</a>
+                <form action="{{ route('post.restore') }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <button type="submit" class="btn btn-success mt-3">Restore</button>
+                </form>
             </div>
             <table class="table">
                 <thead>
@@ -30,6 +35,7 @@
                         <td>
                             <a href="{{route('posts.show',$post->id )}}" class="btn btn-sm btn-primary">View</a>
                             <a href="{{route('posts.edit',$post->id )}}" class="btn btn-sm btn-primary">Edit</a>
+
                             <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')

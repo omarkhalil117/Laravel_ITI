@@ -52,6 +52,7 @@ Route::get('/users',[UserController::class,'index'])->name('users.index');
 
 // Route::put('/posts/{id}', [PostController::class,'update'])->name('posts.update');
 
+Route::put('/posts/restore', [PostController::class,'restore'])->name('post.restore');
 Route::resource('posts', PostController::class);
 
 Route::post('/comments', [CommentController::class, 'store'])->name('comment.store');

@@ -38,6 +38,8 @@ Route::get('/students',[student::class,'home']);
 
 Route::get('/users',[UserController::class,'index'])->name('users.index');
 
+Route::get('/users/{id}',[UserController::class,'show'])->name('users.show');
+
 // Route::post('/posts/create', [PostController::class, 'store'])->name('posts.store');
 
 // Route::get("/posts/create", [PostController::class, 'create'])->name('posts.create');
